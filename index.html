@@ -39,6 +39,15 @@
       margin: 20px;
       color: #FFF;
     }
+    .image-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .image-button img {
+      width: 50px; /* Ustawienie szerokości obrazka */
+      height: auto; /* Zachowanie proporcji obrazka */
+    }
   </style>
 </head>
 <body>
@@ -53,8 +62,10 @@
   <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
   <a href="https://www.przykladowy-link2.com" class="button">Przycisk 2</a>
   
-  <!-- Przyciski z akcją JavaScript -->
-  <button class="button" onclick="alert('Kliknięto przycisk!')">Przycisk z akcją</button>
+  <!-- Przyciski z grafiką -->
+  <button class="image-button" onclick="alert('Kliknięto przycisk!')">
+    <img src="brama.PNG" alt="Przycisk z grafiką bramy">
+  </button>
 
   <!-- Skrypt JavaScript do wyświetlania zegara -->
   <script>
@@ -63,7 +74,7 @@
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = ${hours}:${minutes}:${seconds};
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
     }
     setInterval(updateClock, 1000);
     updateClock(); // Uruchomienie zegara od razu
