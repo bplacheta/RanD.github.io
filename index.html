@@ -16,13 +16,16 @@
       height: 100vh;
       background-color: #333;
       color: #FFF;
+      overflow: hidden;
     }
 
-    /* Kontener na wszystkie elementy */
+    /* Kontener na wszystkie elementy z proporcjami 1360x607 */
     .container {
       position: relative;
-      width: 1200px; /* Stała szerokość kontenera */
-      height: 800px; /* Stała wysokość kontenera */
+      width: 100vw; /* Pełna szerokość okna */
+      height: calc(100vw * (607 / 1360)); /* Wysokość proporcjonalna do szerokości */
+      max-width: 1360px; /* Maksymalna szerokość kontenera */
+      max-height: 607px; /* Maksymalna wysokość kontenera */
       background-image: url('dom1.PNG'); /* Tło */
       background-size: cover;
       background-position: center;
