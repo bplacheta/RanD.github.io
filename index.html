@@ -70,6 +70,15 @@
     setInterval(updateClock, 1000);
     updateClock(); // Uruchomienie zegara od razu
   </script>
+<script>
+  function showResolution() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    alert(`Rozdzielczość strony: ${width} x ${height}px`);
+  }
+
+  showResolution(); // Uruchomienie skryptu przy załadowaniu strony
+</script>
 
 </body>
 </html>
