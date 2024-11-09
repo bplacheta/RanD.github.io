@@ -40,13 +40,10 @@
       color: #FFF;
     }
     .image-button {
-      background: none;
-      border: none;
+      position: absolute;
       cursor: pointer;
-    }
-    .image-button img {
-      width: 50px; /* Ustawienie szerokości obrazka */
-      height: auto; /* Zachowanie proporcji obrazka */
+      width: 50px; /* Szerokość obrazka */
+      height: auto; /* Zachowanie proporcji */
     }
   </style>
 </head>
@@ -62,13 +59,12 @@
   <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
   <a href="https://www.przykladowy-link2.com" class="button">Przycisk 2</a>
   
-  <!-- Przyciski z grafiką -->
-  <button class="image-button" onclick="alert('Kliknięto przycisk!')">
-    <img src="brama.PNG" alt="Przycisk z grafiką bramy">
-  </button>
+  <!-- Przycisk z grafiką, który można przesuwać -->
+  <img src="brama.PNG" alt="Przycisk z grafiką bramy" class="image-button" id="draggableButton">
 
-  <!-- Skrypt JavaScript do wyświetlania zegara -->
+  <!-- Skrypt JavaScript do wyświetlania zegara i przeciągania przycisku -->
   <script>
+    // Funkcja zegara
     function updateClock() {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
@@ -77,7 +73,33 @@
       document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
     }
     setInterval(updateClock, 1000);
-    updateClock(); // Uruchomienie zegara od razu
+    updateClock();
+
+    // Funkcje do przeciągania przycisku
+    const button = document.getElementById('draggableButton');
+    let offsetX, offsetY;
+
+    button.addEventListener('mousedown', (e) => {
+      // Obliczenie przesunięcia kursora względem przycisku
+      offsetX = e.clientX - button.getBoundingClientRect().left;
+      offsetY = e.clientY - button.getBoundingClientRect().top;
+
+      // Zdarzenie przeciągania kursora
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseMove(e) {
+      // Ustawienie nowej pozycji przycisku
+      button.style.left = `${e.clientX - offsetX}px`;
+      button.style.top = `${e.clientY - offsetY}px`;
+    }
+
+    function onMouseUp() {
+      // Usunięcie zdarzeń po zakończeniu przeciągania
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
   </script>
 
 </body>
