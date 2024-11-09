@@ -5,22 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RanD</title>
   <style>
+    /* Styl ogólny dla strony */
     body {
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       margin: 0;
-      padding: 20px;
-      background-image: url('dom1.PNG'); /* Ustawienie tła */
-      background-size: cover; /* Dopasowanie obrazka do całego tła */
-      background-position: center;
-      background-attachment: fixed; /* Sprawia, że tło nie przewija się */
-      color: #FFF; /* Kolor tekstu, żeby był czytelny na tle */
-    }
-    h1 {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333;
       color: #FFF;
     }
+
+    /* Kontener na wszystkie elementy */
+    .container {
+      position: relative;
+      width: 1200px; /* Stała szerokość kontenera */
+      height: 800px; /* Stała wysokość kontenera */
+      background-image: url('dom1.PNG'); /* Tło */
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #FFF;
+      text-align: center;
+    }
+
+    /* Styl dla zegara */
+    #clock {
+      font-size: 1.5em;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #FFF;
+    }
+
+    /* Przyciski */
     .button {
       padding: 10px 20px;
       margin: 10px;
@@ -30,47 +54,59 @@
       border-radius: 5px;
       cursor: pointer;
       text-decoration: none;
+      position: absolute;
     }
+
     .button:hover {
       background-color: #0056b3;
     }
-    #clock {
-      font-size: 1.5em;
-      margin: 20px;
-      color: #FFF;
+
+    /* Pozycje dla poszczególnych przycisków */
+    #button1 {
+      top: 100px;
+      left: 50px;
     }
+
+    #button2 {
+      top: 100px;
+      left: 200px;
+    }
+
+    /* Ikona garażu jako przycisk */
     .image-button {
       position: absolute;
-      left: 51px; /* Ustawienie pozycji X */
-      top: 493px; /* Ustawienie pozycji Y */
+      left: 51px; /* Ustalona pozycja X */
+      top: 493px; /* Ustalona pozycja Y */
       width: 50px; /* Szerokość obrazka */
-      height: auto; /* Zachowanie proporcji */
+      height: auto;
       cursor: pointer;
     }
+
+    /* Pozycja wyświetlania */
     #positionDisplay {
+      position: absolute;
+      top: 20px;
+      right: 50px;
       font-size: 1em;
-      margin-top: 20px;
       color: #FFF;
     }
   </style>
 </head>
 <body>
 
-  <h1>RanD</h1>
-  <p>System zarządzania energią w budynku</p>
+  <!-- Kontener na wszystkie elementy -->
+  <div class="container">
+    <h1>RanD</h1>
+    <p id="clock">Ładowanie zegara...</p>
+    <div id="positionDisplay">Pozycja: X: 51, Y: 493</div>
 
-  <!-- Zegar -->
-  <div id="clock">Ładowanie zegara...</div>
+    <!-- Przyciski -->
+    <a href="https://www.przykladowy-link1.com" class="button" id="button1">Przycisk 1</a>
+    <a href="https://www.przykladowy-link2.com" class="button" id="button2">Przycisk 2</a>
 
-  <!-- Wyświetlanie pozycji ikony -->
-  <div id="positionDisplay">Pozycja: X: 51, Y: 493</div>
-
-  <!-- Przyciski -->
-  <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
-  <a href="https://www.przykladowy-link2.com" class="button">Przycisk 2</a>
-  
-  <!-- Ikona garażu jako przycisk -->
-  <img src="brama.PNG" alt="Ikona garażu" class="image-button" id="garageButton">
+    <!-- Ikona garażu jako przycisk -->
+    <img src="garaz.png" alt="Ikona garażu" class="image-button" id="garageButton">
+  </div>
 
   <!-- Skrypt JavaScript do wyświetlania zegara i zmiany komunikatu -->
   <script>
