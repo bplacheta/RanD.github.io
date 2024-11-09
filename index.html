@@ -45,6 +45,11 @@
       width: 50px; /* Szerokość obrazka */
       height: auto; /* Zachowanie proporcji */
     }
+    #positionDisplay {
+      font-size: 1em;
+      margin-top: 20px;
+      color: #FFF;
+    }
   </style>
 </head>
 <body>
@@ -54,6 +59,9 @@
 
   <!-- Zegar -->
   <div id="clock">Ładowanie zegara...</div>
+
+  <!-- Wyświetlanie pozycji ikony -->
+  <div id="positionDisplay">Pozycja: X: 0, Y: 0</div>
 
   <!-- Przyciski -->
   <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
@@ -77,6 +85,7 @@
 
     // Funkcje do przeciągania przycisku
     const button = document.getElementById('draggableButton');
+    const positionDisplay = document.getElementById('positionDisplay');
     let offsetX, offsetY;
 
     button.addEventListener('mousedown', (e) => {
@@ -91,8 +100,13 @@
 
     function onMouseMove(e) {
       // Ustawienie nowej pozycji przycisku
-      button.style.left = `${e.clientX - offsetX}px`;
-      button.style.top = `${e.clientY - offsetY}px`;
+      const posX = e.clientX - offsetX;
+      const posY = e.clientY - offsetY;
+      button.style.left = `${posX}px`;
+      button.style.top = `${posY}px`;
+
+      // Wyświetlanie aktualnej pozycji
+      positionDisplay.textContent = `Pozycja: X: ${posX}, Y: ${posY}`;
     }
 
     function onMouseUp() {
