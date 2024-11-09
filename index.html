@@ -41,9 +41,11 @@
     }
     .image-button {
       position: absolute;
-      cursor: pointer;
+      left: 51px; /* Ustawienie pozycji X */
+      top: 493px; /* Ustawienie pozycji Y */
       width: 50px; /* Szerokość obrazka */
       height: auto; /* Zachowanie proporcji */
+      cursor: default;
     }
     #positionDisplay {
       font-size: 1em;
@@ -61,16 +63,16 @@
   <div id="clock">Ładowanie zegara...</div>
 
   <!-- Wyświetlanie pozycji ikony -->
-  <div id="positionDisplay">Pozycja: X: 0, Y: 0</div>
+  <div id="positionDisplay">Pozycja: X: 51, Y: 493</div>
 
   <!-- Przyciski -->
   <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
   <a href="https://www.przykladowy-link2.com" class="button">Przycisk 2</a>
   
-  <!-- Przycisk z grafiką, który można przesuwać -->
-  <img src="brama.PNG" alt="Przycisk z grafiką bramy" class="image-button" id="draggableButton">
+  <!-- Ikona bez możliwości przesuwania -->
+  <img src="garaz.png" alt="Ikona garażu" class="image-button" id="staticButton">
 
-  <!-- Skrypt JavaScript do wyświetlania zegara i przeciągania przycisku -->
+  <!-- Skrypt JavaScript do wyświetlania zegara -->
   <script>
     // Funkcja zegara
     function updateClock() {
@@ -82,38 +84,6 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
-
-    // Funkcje do przeciągania przycisku
-    const button = document.getElementById('draggableButton');
-    const positionDisplay = document.getElementById('positionDisplay');
-    let offsetX, offsetY;
-
-    button.addEventListener('mousedown', (e) => {
-      // Obliczenie przesunięcia kursora względem przycisku
-      offsetX = e.clientX - button.getBoundingClientRect().left;
-      offsetY = e.clientY - button.getBoundingClientRect().top;
-
-      // Zdarzenie przeciągania kursora
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    });
-
-    function onMouseMove(e) {
-      // Ustawienie nowej pozycji przycisku
-      const posX = e.clientX - offsetX;
-      const posY = e.clientY - offsetY;
-      button.style.left = `${posX}px`;
-      button.style.top = `${posY}px`;
-
-      // Wyświetlanie aktualnej pozycji
-      positionDisplay.textContent = `Pozycja: X: ${posX}, Y: ${posY}`;
-    }
-
-    function onMouseUp() {
-      // Usunięcie zdarzeń po zakończeniu przeciągania
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    }
   </script>
 
 </body>
