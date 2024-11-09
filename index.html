@@ -12,13 +12,14 @@
       align-items: center;
       margin: 0;
       padding: 20px;
+      background-image: url('dom.jpg'); /* Ustawienie tła */
+      background-size: cover; /* Dopasowanie obrazka do całego tła */
+      background-position: center;
+      background-attachment: fixed; /* Sprawia, że tło nie przewija się */
+      color: #333; /* Kolor tekstu, żeby był czytelny na tle */
     }
     h1 {
       color: #333;
-    }
-    img {
-      max-width: 300px;
-      margin: 20px 0;
     }
     .button {
       padding: 10px 20px;
@@ -47,9 +48,6 @@
 
   <!-- Zegar -->
   <div id="clock">Ładowanie zegara...</div>
-
-  <!-- Obrazek -->
-  <img src="sciezka/do/twoj-obrazek.jpg" alt="Opis obrazka" />
 
   <!-- Przyciski -->
   <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
