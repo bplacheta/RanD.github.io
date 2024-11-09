@@ -45,7 +45,7 @@
       top: 493px; /* Ustawienie pozycji Y */
       width: 50px; /* Szerokość obrazka */
       height: auto; /* Zachowanie proporcji */
-      cursor: default;
+      cursor: pointer;
     }
     #positionDisplay {
       font-size: 1em;
@@ -69,10 +69,10 @@
   <a href="https://www.przykladowy-link1.com" class="button">Przycisk 1</a>
   <a href="https://www.przykladowy-link2.com" class="button">Przycisk 2</a>
   
-  <!-- Ikona bez możliwości przesuwania -->
-  <img src="brama.PNG" alt="Ikona garażu" class="image-button" id="staticButton">
+  <!-- Ikona garażu jako przycisk -->
+  <img src="garaz.png" alt="Ikona garażu" class="image-button" id="garageButton">
 
-  <!-- Skrypt JavaScript do wyświetlania zegara -->
+  <!-- Skrypt JavaScript do wyświetlania zegara i zmiany komunikatu -->
   <script>
     // Funkcja zegara
     function updateClock() {
@@ -84,6 +84,19 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    // Funkcja przełączania stanu garażu
+    const garageButton = document.getElementById('garageButton');
+    let isGarageOpen = false; // Zmienna przechowująca stan garażu
+
+    garageButton.addEventListener('click', () => {
+      if (isGarageOpen) {
+        alert('Garaż zamknięty');
+      } else {
+        alert('Garaż otwarty');
+      }
+      isGarageOpen = !isGarageOpen; // Zmiana stanu garażu
+    });
   </script>
 
 </body>
