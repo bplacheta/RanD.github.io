@@ -64,6 +64,17 @@
       background-color: #0056b3;
     }
 
+    /* Pozycje dla poszczególnych przycisków */
+    #button1 {
+      top: 100px;
+      left: 50px;
+    }
+
+    #button2 {
+      top: 100px;
+      left: 200px;
+    }
+
     /* Ikony jako przyciski */
     .image-button {
       position: absolute;
@@ -73,32 +84,20 @@
     }
 
     /* Pozycje ikon */
-    #windowButton {
+    #garageButton {
       left: 51px;
       top: 493px;
     }
-    #pumpButton {
+    #lightButton {
       left: 150px;
       top: 493px;
     }
-    #washingMachineButton {
+    #heatingButton {
       left: 250px;
       top: 493px;
     }
-    #tvButton {
+    #rfidButton {
       left: 350px;
-      top: 493px;
-    }
-    #panelButton {
-      left: 450px;
-      top: 493px;
-    }
-    #batteryButton {
-      left: 550px;
-      top: 493px;
-    }
-    #blindsButton {
-      left: 650px;
       top: 493px;
     }
 
@@ -120,13 +119,41 @@
     <p id="clock">Ładowanie zegara...</p>
     <div id="positionDisplay">Pozycja: X: 51, Y: 493</div>
 
-    <!-- Ikony urządzeń jako przyciski -->
+    <!-- Przyciski -->
+    <a href="https://www.przykladowy-link1.com" class="button" id="button1">Przycisk 1</a>
+    <a href="https://www.przykladowy-link2.com" class="button" id="button2">Przycisk 2</a>
+
+    <!-- Ikona garażu jako przycisk -->
+    <img src="brama.PNG" alt="Ikona garażu" class="image-button" id="garageButton">
+
+    <!-- Ikona światła jako przycisk -->
+    <img src="swiatlo_off.png" alt="Ikona światła" class="image-button" id="lightButton">
+
+    <!-- Ikona ogrzewania jako przycisk -->
+    <img src="ogrzewanie_off.png" alt="Ikona ogrzewania" class="image-button" id="heatingButton">
+
+    <!-- Ikona RFID (drzwi) jako przycisk -->
+    <img src="rfid_off.png" alt="Ikona RFID drzwi" class="image-button" id="rfidButton">
+
+    <!-- Ikona okna -->
     <img src="okno_closed.png" alt="Ikona okna" class="image-button" id="windowButton">
+
+    <!-- Ikona pompy -->
     <img src="pompa_off.png" alt="Ikona pompy" class="image-button" id="pumpButton">
+
+    <!-- Ikona pralki -->
     <img src="pralka_off.png" alt="Ikona pralki" class="image-button" id="washingMachineButton">
+
+    <!-- Ikona TV -->
     <img src="tv_off.png" alt="Ikona TV" class="image-button" id="tvButton">
-    <img src="panel_off.png" alt="Ikona panelu fotowoltaicznego" class="image-button" id="panelButton">
+
+    <!-- Ikona panelu fotowoltaicznego -->
+    <img src="panel_off.png" alt="Ikona panelu fotowoltaicznego" class="image-button" id="solarPanelButton">
+
+    <!-- Ikona baterii -->
     <img src="bateria_off.png" alt="Ikona baterii" class="image-button" id="batteryButton">
+
+    <!-- Ikona rolet -->
     <img src="roleta_off.png" alt="Ikona rolet" class="image-button" id="blindsButton">
   </div>
 
@@ -143,9 +170,119 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Funkcja zmiany stanu okna
+    // Funkcja przełączania stanu garażu
+    const garageButton = document.getElementById('garageButton');
+    let garageState = 'default'; // Początkowy stan
+
+    function updateGarageButton() {
+      switch (garageState) {
+        case 'default':
+          garageButton.src = 'brama.PNG';
+          break;
+        case 'open':
+          garageButton.src = 'brama_open.PNG';
+          alert('Brama jest otwarta');
+          break;
+        case 'closed':
+          garageButton.src = 'brama_closed.PNG';
+          alert('Brama jest zamknięta');
+          break;
+      }
+    }
+
+    garageButton.addEventListener('click', () => {
+      if (garageState === 'default' || garageState === 'closed') {
+        garageState = 'open';
+      } else {
+        garageState = 'closed';
+      }
+      updateGarageButton();
+    });
+
+    // Ustawienie początkowego stanu garażu
+    updateGarageButton();
+
+    // Funkcja przełączania stanu światła
+    const lightButton = document.getElementById('lightButton');
+    let lightState = 'off'; // Początkowy stan
+
+    function updateLightButton() {
+      if (lightState === 'off') {
+        lightButton.src = 'swiatlo_off.png';
+      } else {
+        lightButton.src = 'swiatlo_on.png';
+      }
+    }
+
+    lightButton.addEventListener('click', () => {
+      if (lightState === 'off') {
+        lightState = 'on';
+        alert('Światło włączone');
+      } else {
+        lightState = 'off';
+        alert('Światło wyłączone');
+      }
+      updateLightButton();
+    });
+
+    // Ustawienie początkowego stanu światła
+    updateLightButton();
+
+    // Funkcja przełączania stanu ogrzewania
+    const heatingButton = document.getElementById('heatingButton');
+    let heatingState = 'off'; // Początkowy stan
+
+    function updateHeatingButton() {
+      if (heatingState === 'off') {
+        heatingButton.src = 'ogrzewanie_off.png';
+      } else {
+        heatingButton.src = 'ogrzewanie_on.png';
+      }
+    }
+
+    heatingButton.addEventListener('click', () => {
+      if (heatingState === 'off') {
+        heatingState = 'on';
+        alert('Ogrzewanie włączone');
+      } else {
+        heatingState = 'off';
+        alert('Ogrzewanie wyłączone');
+      }
+      updateHeatingButton();
+    });
+
+    // Ustawienie początkowego stanu ogrzewania
+    updateHeatingButton();
+
+    // Funkcja przełączania stanu drzwi RFID
+    const rfidButton = document.getElementById('rfidButton');
+    let rfidState = 'off'; // Początkowy stan
+
+    function updateRfidButton() {
+      if (rfidState === 'off') {
+        rfidButton.src = 'rfid_off.png';
+      } else {
+        rfidButton.src = 'rfid_on.png';
+      }
+    }
+
+    rfidButton.addEventListener('click', () => {
+      if (rfidState === 'off') {
+        rfidState = 'on';
+        alert('Drzwi otwarte');
+      } else {
+        rfidState = 'off';
+        alert('Drzwi zamknięte');
+      }
+      updateRfidButton();
+    });
+
+    // Ustawienie początkowego stanu RFID drzwi
+    updateRfidButton();
+
+    // Dodanie funkcjonalności dla okna
     const windowButton = document.getElementById('windowButton');
-    let windowState = 'closed';
+    let windowState = 'closed'; // Początkowy stan
 
     function updateWindowButton() {
       if (windowState === 'closed') {
@@ -168,9 +305,9 @@
 
     updateWindowButton();
 
-    // Funkcja zmiany stanu pompy
+    // Dodanie funkcjonalności dla pompy
     const pumpButton = document.getElementById('pumpButton');
-    let pumpState = 'off';
+    let pumpState = 'off'; // Początkowy stan
 
     function updatePumpButton() {
       if (pumpState === 'off') {
@@ -193,9 +330,9 @@
 
     updatePumpButton();
 
-    // Funkcja zmiany stanu pralki
+    // Dodanie funkcjonalności dla pralki
     const washingMachineButton = document.getElementById('washingMachineButton');
-    let washingMachineState = 'off';
+    let washingMachineState = 'off'; // Początkowy stan
 
     function updateWashingMachineButton() {
       if (washingMachineState === 'off') {
@@ -218,9 +355,9 @@
 
     updateWashingMachineButton();
 
-    // Funkcja zmiany stanu TV
+    // Dodanie funkcjonalności dla TV
     const tvButton = document.getElementById('tvButton');
-    let tvState = 'off';
+    let tvState = 'off'; // Początkowy stan
 
     function updateTvButton() {
       if (tvState === 'off') {
@@ -243,34 +380,34 @@
 
     updateTvButton();
 
-    // Funkcja zmiany stanu panelu fotowoltaicznego
-    const panelButton = document.getElementById('panelButton');
-    let panelState = 'off';
+    // Dodanie funkcjonalności dla panelu fotowoltaicznego
+    const solarPanelButton = document.getElementById('solarPanelButton');
+    let solarPanelState = 'off'; // Początkowy stan
 
-    function updatePanelButton() {
-      if (panelState === 'off') {
-        panelButton.src = 'panel_off.png';
+    function updateSolarPanelButton() {
+      if (solarPanelState === 'off') {
+        solarPanelButton.src = 'panel_off.png';
       } else {
-        panelButton.src = 'panel_on.png';
+        solarPanelButton.src = 'panel_on.png';
       }
     }
 
-    panelButton.addEventListener('click', () => {
-      if (panelState === 'off') {
-        panelState = 'on';
+    solarPanelButton.addEventListener('click', () => {
+      if (solarPanelState === 'off') {
+        solarPanelState = 'on';
         alert('Energia pobierana z panelu fotowoltaicznego');
       } else {
-        panelState = 'off';
+        solarPanelState = 'off';
         alert('Wykorzystywanie energii z sieci');
       }
-      updatePanelButton();
+      updateSolarPanelButton();
     });
 
-    updatePanelButton();
+    updateSolarPanelButton();
 
-    // Funkcja zmiany stanu baterii
+    // Dodanie funkcjonalności dla baterii
     const batteryButton = document.getElementById('batteryButton');
-    let batteryState = 'off';
+    let batteryState = 'off'; // Początkowy stan
 
     function updateBatteryButton() {
       if (batteryState === 'off') {
@@ -293,9 +430,9 @@
 
     updateBatteryButton();
 
-    // Funkcja zmiany stanu rolet
+    // Dodanie funkcjonalności dla rolet
     const blindsButton = document.getElementById('blindsButton');
-    let blindsState = 'off';
+    let blindsState = 'off'; // Początkowy stan
 
     function updateBlindsButton() {
       if (blindsState === 'off') {
