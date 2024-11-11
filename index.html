@@ -78,11 +78,19 @@
     /* Ikona garażu jako przycisk */
     .image-button {
       position: absolute;
-      left: 51px; /* Ustalona pozycja X */
-      top: 493px; /* Ustalona pozycja Y */
       width: 50px; /* Szerokość obrazka */
       height: auto;
       cursor: pointer;
+    }
+
+    /* Pozycje ikon */
+    #garageButton {
+      left: 51px;
+      top: 493px;
+    }
+    #lightButton {
+      left: 150px;
+      top: 493px;
     }
 
     /* Pozycja wyświetlania */
@@ -109,6 +117,9 @@
 
     <!-- Ikona garażu jako przycisk -->
     <img src="brama.PNG" alt="Ikona garażu" class="image-button" id="garageButton">
+
+    <!-- Ikona światła jako przycisk -->
+    <img src="swiatlo_off.png" alt="Ikona światła" class="image-button" id="lightButton">
   </div>
 
   <!-- Skrypt JavaScript do wyświetlania zegara i zmiany komunikatu -->
@@ -153,8 +164,34 @@
       updateGarageButton();
     });
 
-    // Ustawienie początkowego stanu
+    // Ustawienie początkowego stanu garażu
     updateGarageButton();
+
+    // Funkcja przełączania stanu światła
+    const lightButton = document.getElementById('lightButton');
+    let lightState = 'off'; // Początkowy stan
+
+    function updateLightButton() {
+      if (lightState === 'off') {
+        lightButton.src = 'swiatlo_off.png';
+      } else {
+        lightButton.src = 'swiatlo_on.png';
+      }
+    }
+
+    lightButton.addEventListener('click', () => {
+      if (lightState === 'off') {
+        lightState = 'on';
+        alert('Światło włączone');
+      } else {
+        lightState = 'off';
+        alert('Światło wyłączone');
+      }
+      updateLightButton();
+    });
+
+    // Ustawienie początkowego stanu światła
+    updateLightButton();
   </script>
 
 </body>
