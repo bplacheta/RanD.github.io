@@ -126,16 +126,35 @@
 
     // Funkcja przełączania stanu garażu
     const garageButton = document.getElementById('garageButton');
-    let isGarageOpen = false; // Zmienna przechowująca stan garażu
+    let garageState = 'default'; // Początkowy stan
+
+    function updateGarageButton() {
+      switch (garageState) {
+        case 'default':
+          garageButton.src = 'brama.PNG';
+          break;
+        case 'open':
+          garageButton.src = 'brama_open.PNG';
+          alert('Brama jest otwarta');
+          break;
+        case 'closed':
+          garageButton.src = 'brama_closed.PNG';
+          alert('Brama jest zamknięta');
+          break;
+      }
+    }
 
     garageButton.addEventListener('click', () => {
-      if (isGarageOpen) {
-        alert('Garaż zamknięty');
+      if (garageState === 'default' || garageState === 'closed') {
+        garageState = 'open';
       } else {
-        alert('Garaż otwarty');
+        garageState = 'closed';
       }
-      isGarageOpen = !isGarageOpen; // Zmiana stanu garażu
+      updateGarageButton();
     });
+
+    // Ustawienie początkowego stanu
+    updateGarageButton();
   </script>
 
 </body>
