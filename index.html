@@ -96,6 +96,10 @@
       left: 250px;
       top: 493px;
     }
+    #rfidButton {
+      left: 350px;
+      top: 493px;
+    }
 
     /* Pozycja wyświetlania */
     #positionDisplay {
@@ -127,6 +131,9 @@
 
     <!-- Ikona ogrzewania jako przycisk -->
     <img src="ogrzewanie_off.png" alt="Ikona ogrzewania" class="image-button" id="heatingButton">
+
+    <!-- Ikona RFID (drzwi) jako przycisk -->
+    <img src="rfid_off.png" alt="Ikona RFID drzwi" class="image-button" id="rfidButton">
   </div>
 
   <!-- Skrypt JavaScript do wyświetlania zegara i zmiany komunikatu -->
@@ -225,6 +232,32 @@
 
     // Ustawienie początkowego stanu ogrzewania
     updateHeatingButton();
+
+    // Funkcja przełączania stanu drzwi RFID
+    const rfidButton = document.getElementById('rfidButton');
+    let rfidState = 'off'; // Początkowy stan
+
+    function updateRfidButton() {
+      if (rfidState === 'off') {
+        rfidButton.src = 'rfid_off.png';
+      } else {
+        rfidButton.src = 'rfid_on.png';
+      }
+    }
+
+    rfidButton.addEventListener('click', () => {
+      if (rfidState === 'off') {
+        rfidState = 'on';
+        alert('Drzwi otwarte');
+      } else {
+        rfidState = 'off';
+        alert('Drzwi zamknięte');
+      }
+      updateRfidButton();
+    });
+
+    // Ustawienie początkowego stanu RFID drzwi
+    updateRfidButton();
   </script>
 
 </body>
