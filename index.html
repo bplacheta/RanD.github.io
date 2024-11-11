@@ -75,7 +75,7 @@
       left: 200px;
     }
 
-    /* Ikona garażu jako przycisk */
+    /* Ikony jako przyciski */
     .image-button {
       position: absolute;
       width: 50px; /* Szerokość obrazka */
@@ -90,6 +90,10 @@
     }
     #lightButton {
       left: 150px;
+      top: 493px;
+    }
+    #heatingButton {
+      left: 250px;
       top: 493px;
     }
 
@@ -120,6 +124,9 @@
 
     <!-- Ikona światła jako przycisk -->
     <img src="swiatlo_off.png" alt="Ikona światła" class="image-button" id="lightButton">
+
+    <!-- Ikona ogrzewania jako przycisk -->
+    <img src="ogrzewanie_off.png" alt="Ikona ogrzewania" class="image-button" id="heatingButton">
   </div>
 
   <!-- Skrypt JavaScript do wyświetlania zegara i zmiany komunikatu -->
@@ -192,6 +199,32 @@
 
     // Ustawienie początkowego stanu światła
     updateLightButton();
+
+    // Funkcja przełączania stanu ogrzewania
+    const heatingButton = document.getElementById('heatingButton');
+    let heatingState = 'off'; // Początkowy stan
+
+    function updateHeatingButton() {
+      if (heatingState === 'off') {
+        heatingButton.src = 'ogrzewanie_off.png';
+      } else {
+        heatingButton.src = 'ogrzewanie_on.png';
+      }
+    }
+
+    heatingButton.addEventListener('click', () => {
+      if (heatingState === 'off') {
+        heatingState = 'on';
+        alert('Ogrzewanie włączone');
+      } else {
+        heatingState = 'off';
+        alert('Ogrzewanie wyłączone');
+      }
+      updateHeatingButton();
+    });
+
+    // Ustawienie początkowego stanu ogrzewania
+    updateHeatingButton();
   </script>
 
 </body>
